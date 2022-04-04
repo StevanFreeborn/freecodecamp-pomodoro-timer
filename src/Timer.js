@@ -25,28 +25,28 @@ class Timer extends React.Component {
     let currSesh = this.state.sessionLength;
     let currBrk = this.state.breakLength;
 
-    if(id == "session-decrement" && currSesh > 1)
+    if(id === "session-decrement" && currSesh > 1)
     {
       this.setState({
         sessionLength: this.state.sessionLength - 1,
         sessionTimer: this.state.sessionTimer - 60
       })
     }
-    if(id == "session-increment" && currSesh < 60)
+    if(id === "session-increment" && currSesh < 60)
     {
       this.setState({
         sessionLength: this.state.sessionLength + 1,
         sessionTimer: this.state.sessionTimer + 60
       })
     }
-    if(id == "break-decrement" && currBrk > 1)
+    if(id === "break-decrement" && currBrk > 1)
     {
       this.setState({
         breakLength: this.state.breakLength - 1,
         breakTimer: this.state.breakTimer - 60
       })
     }
-    if(id == "break-increment" && currBrk < 60)
+    if(id === "break-increment" && currBrk < 60)
     {
       this.setState({
         breakLength: this.state.breakLength + 1,
@@ -56,7 +56,7 @@ class Timer extends React.Component {
   }
 
   clock() {
-    let timer = (this.state.timerType == "session") ?
+    let timer = (this.state.timerType === "session") ?
     this.state.sessionTimer :
     this.state.breakTimer;
 
@@ -68,7 +68,7 @@ class Timer extends React.Component {
   }
 
   control(){
-    if(this.state.timerStatus == "Stopped")
+    if(this.state.timerStatus === "Stopped")
     {
       this.countDown();
       this.setState({
@@ -191,7 +191,7 @@ class Timer extends React.Component {
                 onClick={this.control}
               >
               {
-                (this.state.timerStatus == "Stopped") ?
+                (this.state.timerStatus === "Stopped") ?
                 <i className="bi bi-play-fill"></i> :
                 <i className="bi bi-pause-fill"></i>
               }
