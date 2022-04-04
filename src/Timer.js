@@ -10,7 +10,7 @@ class Timer extends React.Component {
       sessionLength: 25,
       sessionTimer: 1500,
       interval: '',
-      timerType: 'session',
+      timerType: 'Session',
       timerStatus: 'Stopped'
     }
     this.changeLength = this.changeLength.bind(this);
@@ -56,7 +56,7 @@ class Timer extends React.Component {
   }
 
   clock() {
-    let timer = (this.state.timerType === "session") ?
+    let timer = (this.state.timerType === "Session") ?
     this.state.sessionTimer :
     this.state.breakTimer;
 
@@ -105,7 +105,7 @@ class Timer extends React.Component {
       sessionLength: 25,
       sessionTimer: 1500,
       interval: '',
-      timerType: 'session',
+      timerType: 'Session',
       timerStatus: 'Stopped'
     })
   }
@@ -179,7 +179,7 @@ class Timer extends React.Component {
               <div
                 id="timer-label"
               >
-                {this.state.timerStatus}
+              {this.state.timerType + " - " + this.state.timerStatus}
               </div>
               <div
                 id="time-left"
