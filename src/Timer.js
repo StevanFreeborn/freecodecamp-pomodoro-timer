@@ -16,7 +16,8 @@ class Timer extends React.Component {
     this.changeLength = this.changeLength.bind(this);
     this.clock = this.clock.bind(this);
     this.control = this.control.bind(this);
-    this.countDown = this.countDown.bind(this);
+    this.activateTimer = this.activateTimer.bind(this);
+    this.countdown = this.countdown.bind(this);
     this.reset = this.reset.bind(this);
   }
 
@@ -70,7 +71,7 @@ class Timer extends React.Component {
   control(){
     if(this.state.timerStatus === "Stopped")
     {
-      this.countDown();
+      this.activateTimer();
       this.setState({
         timerStatus: "Running"
       });
@@ -85,14 +86,45 @@ class Timer extends React.Component {
     }
   }
 
-  countDown() {
+  activateTimer() {
     this.setState({
-      interval: setInterval(() => {
+      interval: setInterval(() => this.countdown(), 1000)
+    });
+  }
+
+  countdown() {
+    if(this.state.timerType === "Session")
+    {
+      if(this.state.sessionTimer === 0)
+      {
+        // TODO: play beep
         this.setState({
-          sessionTimer: this.state.sessionTimer -1
-        })
-      }, 1000)
-    })
+          sessionTimer: this.state.sessionLength * 60,
+          timerType: "Break"
+        });
+        return;
+      }
+
+      this.setState({
+        sessionTimer: this.state.sessionTimer - 1
+      });
+    }
+    else
+    {
+      if(this.state.breakTimer === 0)
+      {
+        // TODO: play beep
+        this.setState({
+          breakTimer: this.state.breakLength * 60,
+          timerType: "Session"
+        });
+        return;
+      }
+
+      this.setState({
+        breakTimer: this.state.breakTimer - 1
+      });
+    }
   }
 
   reset() {
