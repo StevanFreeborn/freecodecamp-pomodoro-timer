@@ -74,7 +74,7 @@ class Timer extends React.Component {
       this.activateTimer();
       this.setState({
         timerStatus: "Running"
-      });
+      });  
     }
     else
     {
@@ -93,11 +93,13 @@ class Timer extends React.Component {
   }
 
   countdown() {
+
     if(this.state.timerType === "Session")
     {
       if(this.state.sessionTimer === 0)
       {
-        // TODO: play beep
+        this.beep.play();
+
         this.setState({
           sessionTimer: this.state.sessionLength * 60,
           timerType: "Break"
@@ -113,7 +115,8 @@ class Timer extends React.Component {
     {
       if(this.state.breakTimer === 0)
       {
-        // TODO: play beep
+        this.beep.play();
+
         this.setState({
           breakTimer: this.state.breakLength * 60,
           timerType: "Session"
@@ -128,8 +131,10 @@ class Timer extends React.Component {
   }
 
   reset() {
-
     clearInterval(this.state.interval);
+
+    this.beep.pause();
+    this.beep.currentTime = 0;
 
     this.setState({
       breakLength: 5,
@@ -234,6 +239,15 @@ class Timer extends React.Component {
               >
                 <i className="bi bi-arrow-counterclockwise"></i>
               </button>
+              <audio
+                id="beep"
+                ref={(beep) => {this.beep = beep}}
+              >
+                <source 
+                  src="sounds/beep.mp3"
+                  type="audio/mp3"
+                />
+              </audio>
             </div>
           </div>
 
