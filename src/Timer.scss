@@ -1,2 +1,63 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss"
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        max-width: 500px;
+    }
+
+    #session-label,
+    #break-label {
+        font-size: large;
+    }
+
+    #session-length,
+    #break-length {
+        font-size: x-large;
+    }
+
+    .btn-secondary:active,
+    .btn-secondary:focus,
+    .btn-secondary:focus:active {
+        box-shadow: none;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    #timer-label {
+        font-size: x-large;
+    }
+
+    #time-left {
+        font-size: xx-large;
+    }
+
+    .btn-success:active,
+    .btn-success:focus,
+    .btn-success:focus:active {
+        box-shadow: none;
+        background-color: #198754;
+        border-color: #198754;
+    }
+
+    .btn-warning:active,
+    .btn-warning:focus,
+    .btn-warning:focus:active {
+        box-shadow: none;
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+
+    .btn-danger:active,
+    .btn-danger:focus,
+    .btn-danger:focus:active {
+        box-shadow: none;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+}
