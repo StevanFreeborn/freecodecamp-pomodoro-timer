@@ -270,8 +270,10 @@ class Timer extends React.Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-12 text-center text-white m-1">
-                  Code by Stevan
+              <div className="col-12">
+                  <div className="text-center text-white m-1">
+                    Code by Stevan
+                  </div>
               </div>
             </div>
 
