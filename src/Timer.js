@@ -148,109 +148,134 @@ class Timer extends React.Component {
   }
 
   render() {
+
+    let incrementDecrementClassNames = "btn btn-secondary m-1";
+
+    let playPauseClassNames = (this.state.timerStatus === "Stopped") ?
+    "btn btn-success m-1" :
+    "btn btn-warning m-1";
+
+    let wrapperClassNames = (this.state.timerStatus === "Stopped") ?
+    "wrapper bg-success" :
+    "wrapper bg-warning";
+
     return (
       <div>
-        <div className="container-fluid">
+
+        <div className={wrapperClassNames}>
+          <div className="container">
           
-          <div className="row">
-            <div className="col-12">
-              <h1>
-                <i className="bi bi-stopwatch-fill"></i> Pomodoro Timer
-              </h1>
+            <div className="card">
+              <div className="row p-2 text-center">
+                <div className="col-12">
+                  <h1 className="card-header">
+                    <i className="bi bi-stopwatch-fill"></i> Pomodoro Timer
+                  </h1>
+                </div>
+              </div>
+              <div className="row p-2 text-center">
+                <div className="col-6">
+                  <div
+                    id="session-label"
+                  >
+                    Session
+                  </div>
+                  <div
+                    id="session-length"
+                  >
+                    {this.state.sessionLength}
+                  </div>
+                  <button
+                    id="session-decrement"
+                    onClick={this.changeLength}
+                    className={incrementDecrementClassNames}
+                  >
+                    <i className="bi bi-dash"></i>
+                  </button>
+                  <button
+                    id="session-increment"
+                    onClick={this.changeLength}
+                    className={incrementDecrementClassNames}
+                  >
+                    <i className="bi bi-plus"></i>
+                  </button>
+                </div>
+                <div className="col-6">
+                  <div
+                    id="break-label"
+                  >
+                    Break
+                  </div>
+                  <div
+                    id="break-length"
+                  >
+                    {this.state.breakLength}
+                  </div>
+                  <button
+                    id="break-decrement"
+                    onClick={this.changeLength}
+                    className={incrementDecrementClassNames}
+                  >
+                    <i className="bi bi-dash"></i>
+                  </button>
+                  <button
+                    id="break-increment"
+                    onClick={this.changeLength}
+                    className={incrementDecrementClassNames}
+                  >
+                    <i className="bi bi-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div className="row p-2 text-center">
+                <div className="col-12">
+                  <div
+                    id="timer-label"
+                  >
+                  {this.state.timerType + " - " + this.state.timerStatus}
+                  </div>
+                  <div
+                    id="time-left"
+                  >
+                    {this.clock()}
+                  </div>
+                  <button
+                    id="start_stop"
+                    onClick={this.control}
+                    className={playPauseClassNames}
+                  >
+                  {
+                    (this.state.timerStatus === "Stopped") ?
+                    <i className="bi bi-play-fill"></i> :
+                    <i className="bi bi-pause-fill"></i>
+                  }
+                  </button>
+                  <button
+                    id="reset"
+                    onClick={this.reset}
+                    className="btn btn-danger m-1"
+                  >
+                    <i className="bi bi-arrow-counterclockwise"></i>
+                  </button>
+                  <audio
+                    id="beep"
+                    ref={(beep) => {this.beep = beep}}
+                  >
+                    <source
+                      src="sounds/beep.mp3"
+                      type="audio/mp3"
+                    />
+                  </audio>
+                </div>
+              </div>
             </div>
-          </div>
+            <div className="row">
+              <div className="col-12 text-center text-white m-1">
+                  Code by Stevan
+              </div>
+            </div>
 
-          <div className="row">
-            <div className="col-6">
-              <div
-                id="session-label"
-              >
-                Session
-              </div>
-              <div
-                id="session-length"
-              >
-                {this.state.sessionLength}
-              </div>
-              <button
-                id="session-decrement"
-                onClick={this.changeLength}
-              >
-                <i className="bi bi-dash"></i>
-              </button>
-              <button
-                id="session-increment"
-                onClick={this.changeLength}
-              >
-                <i className="bi bi-plus"></i>
-              </button>
-            </div>
-            <div className="col-6">
-              <div
-                id="break-label"
-              >
-                Break
-              </div>
-              <div
-                id="break-length"
-              >
-                {this.state.breakLength}
-              </div>
-              <button
-                id="break-decrement"
-                onClick={this.changeLength}
-              >
-                <i className="bi bi-dash"></i>
-              </button>
-              <button
-                id="break-increment"
-                onClick={this.changeLength}
-              >
-                <i className="bi bi-plus"></i>
-              </button>
-            </div>
           </div>
-
-          <div className="row">
-            <div className="col-12">
-              <div
-                id="timer-label"
-              >
-              {this.state.timerType + " - " + this.state.timerStatus}
-              </div>
-              <div
-                id="time-left"
-              >
-                {this.clock()}
-              </div>
-              <button
-                id="start_stop"
-                onClick={this.control}
-              >
-              {
-                (this.state.timerStatus === "Stopped") ?
-                <i className="bi bi-play-fill"></i> :
-                <i className="bi bi-pause-fill"></i>
-              }
-              </button>
-              <button
-                id="reset"
-                onClick={this.reset}
-              >
-                <i className="bi bi-arrow-counterclockwise"></i>
-              </button>
-              <audio
-                id="beep"
-                ref={(beep) => {this.beep = beep}}
-              >
-                <source 
-                  src="sounds/beep.mp3"
-                  type="audio/mp3"
-                />
-              </audio>
-            </div>
-          </div>
-
         </div>
 
       </div>
